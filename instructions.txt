@@ -1,0 +1,36 @@
+1. 	Train images go in /tf_files/train_images with subfolders for the name of each image
+	EX: /tf_files/train_images/cars for car images, tf_files/train_images/houses for houses, etc.
+
+2. 	IMAGE_SIZE can be 128, 160, 192, or 224px (recommended)
+	RELATIVE_SIZE as a fraction of the largest MobileNet, can be 1.0, 0.75, 0.50, or 0.25 	(recommended)
+	ARCHITECHTURE= mobilenet_RELATIVE_SIZE_IMAGE_SIZE
+
+3.	Start tensorboard 
+	tensorboard --logdir tf_files/training_summaries &
+	pkill -f "tensorboard" to kill TensorBoard
+
+4. 	Retrain Script
+	HELP: python -m scripts.retrain -h
+		python -m scripts.retrain ^
+  		--bottleneck_dir=tf_files/bottlenecks ^
+  		--how_many_training_steps=500 ^
+  		--model_dir=tf_files/models/ ^
+  		--summaries_dir=tf_files/training_summaries/ARCHITECTURE ^
+  		--output_graph=tf_files/retrained_graph.pb ^
+  		--output_labels=tf_files/retrained_labels.txt ^
+  		--architecture=ARCHITECTURE ^
+  		--image_dir=tf_files/flower_photos
+
+5.	For More Accurate Results
+		- Remove parameter --how_many_training_steps (default 4000)
+		- adjust --learning_rate parameter (controls how much to change tensors during final 			layer training), default 0.01, 0.005 will take longer, but more accurate, 1.0 			would be faster, but unstable
+
+6. 	Using the Model
+	Info was written in files:
+		1. tf_files/retrained_graph.pb - a version of the selected network with a final layer 
+		2. tf_files/retrained_labels.txt - a text file containing labels
+	HELP: python -m  scripts.label_image -h
+		python -m scripts.label_image ^
+    		--graph=tf_files/retrained_graph.pb  ^
+    		--image=IMAGE
+	
