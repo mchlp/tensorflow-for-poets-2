@@ -23,7 +23,7 @@
 
 5.	For More Accurate Results
 		- Remove parameter --how_many_training_steps (default 4000)
-		- adjust --learning_rate parameter (controls how much to change tensors during final 			layer training), default 0.01, 0.005 will take longer, but more accurate, 1.0 			would be faster, but unstable
+		- adjust --learning_rate parameter (controls how much to change tensors during final layer training), default 0.01, 0.005 			will take longer, but more accurate, 1.0 would be faster, but unstable
 
 6. 	Using the Model
 	Info was written in files:
