@@ -1,5 +1,7 @@
 # Overview
 
+Modified repo from google into a template for recognizing images.
+
 This repo contains code for the
 ["TensorFlow for poets 2" codelab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2).
 
